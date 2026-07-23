@@ -1,6 +1,6 @@
-﻿using CoursePortalMiniApi.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
+using CoursePortalMiniApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoursePortalMiniApi.Data
 {

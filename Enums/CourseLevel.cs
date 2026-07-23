@@ -1,4 +1,4 @@
-﻿namespace CoursePortalMiniApi.Enums
+namespace CoursePortalMiniApi.Enums
 {
     public enum CourseLevel
     {

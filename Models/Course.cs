@@ -1,4 +1,4 @@
-﻿using CoursePortalMiniApi.Enums;
+using CoursePortalMiniApi.Enums;
 namespace CoursePortalMiniApi.Models
 {
     public sealed class Course

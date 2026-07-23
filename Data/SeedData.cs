@@ -1,4 +1,4 @@
-﻿namespace CoursePortalMiniApi.Data
+namespace CoursePortalMiniApi.Data
 {
     public class SeedData
     {

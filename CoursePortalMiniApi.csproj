@@ -17,4 +17,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include=".github\workflows\ci.yml" />
+  </ItemGroup>
+
 </Project>

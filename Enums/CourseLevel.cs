@@ -4,7 +4,7 @@ namespace CoursePortalMiniApi.Enums
     {
         Unknown = 0,
         Beginner = 1,
-        Intermediat = 2,
+        Intermediate = 2,
         Advanced = 3
     }
 }

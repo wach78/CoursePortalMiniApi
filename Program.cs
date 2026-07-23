@@ -15,9 +15,7 @@ var connectionString = builder.Configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(connectionString));
 
-
 var app = builder.Build();
-
 
 await using (var scope = app.Services.CreateAsyncScope())
 {

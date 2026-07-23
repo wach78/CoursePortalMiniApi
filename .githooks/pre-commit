@@ -2,14 +2,16 @@
 
 REPOSITORY_ROOT="$(git rev-parse --show-toplevel)"
 
-dotnet format "$REPOSITORY_ROOT/CoursePortalMiniApi.csproj" \
+echo "Checking code formatting..."
+
+if ! dotnet format "$REPOSITORY_ROOT/CoursePortalMiniApi.csproj" \
     --verify-no-changes \
     --verbosity minimal
-
-if [ $? -ne 0 ]; then
+then
     echo "Formatting errors found."
     echo "Run: dotnet format CoursePortalMiniApi.csproj"
     exit 1
 fi
 
+echo "Formatting check passed."
 exit 0

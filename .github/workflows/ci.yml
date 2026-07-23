@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-format:
+    name: Build and formatting
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore CoursePortalMiniApi.csproj
+
+      - name: Check formatting
+        run: >
+          dotnet format CoursePortalMiniApi.csproj
+          --verify-no-changes
+          --verbosity diagnostic
+          --no-restore
+
+      - name: Build
+        run: >
+          dotnet build CoursePortalMiniApi.csproj
+          --configuration Release
+          --no-restore
+          --warnaserror
+
+  dependency-security:
+    name: NuGet vulnerability check
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore and audit NuGet packages
+        run: >
+          dotnet restore CoursePortalMiniApi.csproj
+          -p:NuGetAudit=true
+          -p:NuGetAuditMode=all
+          -p:TreatWarningsAsErrors=true
+
+      - name: List vulnerable NuGet packages
+        run: >
+          dotnet list CoursePortalMiniApi.csproj
+          package
+          --vulnerable
+          --include-transitive
+          --no-restore
+
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.draft == false
+
+    permissions:
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  workflow-lint:
+    name: GitHub Actions lint
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Run actionlint
+        uses: raven-actions/actionlint@v2

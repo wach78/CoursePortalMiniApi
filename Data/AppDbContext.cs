@@ -39,6 +39,12 @@ public sealed class AppDbContext(
 
             entity.Property(course => course.Level)
                 .IsRequired();
+
+            entity.HasIndex(course => new
+            {
+                course.Name,
+                course.StartDate
+            }).IsUnique();
         });
     }
 }

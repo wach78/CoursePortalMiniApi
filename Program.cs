@@ -83,23 +83,23 @@ app.MapGet("/api/courses", async (AppDbContext db, CancellationToken cancellatio
 
 // READ ONE (GET /api/courses/{id})
 app.MapGet("/api/courses/{id:int}", async ([FromRoute] int id, AppDbContext db, CancellationToken cancellationToken) =>
-{ 
- var course = await db.Courses
-    .AsNoTracking()
-    .Where(course => course.Id == id)
-    .Select(course => new CourseResponseDto
-    {
-        Id = course.Id,
-        Name = course.Name,
-        Description = course.Description,
-        StartDate = course.StartDate,
-        DurationInWeeks = course.DurationInWeeks,
-        Price = course.Price,
-        Level = course.Level
-    })
-    .FirstOrDefaultAsync(cancellationToken);
+{
+    var course = await db.Courses
+       .AsNoTracking()
+       .Where(course => course.Id == id)
+       .Select(course => new CourseResponseDto
+       {
+           Id = course.Id,
+           Name = course.Name,
+           Description = course.Description,
+           StartDate = course.StartDate,
+           DurationInWeeks = course.DurationInWeeks,
+           Price = course.Price,
+           Level = course.Level
+       })
+       .FirstOrDefaultAsync(cancellationToken);
 
-    return course is null ? Results.NotFound(): Results.Ok(course);
+    return course is null ? Results.NotFound() : Results.Ok(course);
 });
 
 // CREATE (POST /api/courses)
@@ -145,10 +145,8 @@ app.MapPost("/api/courses", async (CourseRequestDto request, AppDbContext db, Ca
         Level = course.Level
     };
 
-    return Results.Created($"/api/courses/{course.Id}",response);
+    return Results.Created($"/api/courses/{course.Id}", response);
 });
-
-
 
 // UPDATE (PUT /api/courses/{id})
 app.MapPut("/api/courses/{id:int}", async ([FromRoute] int id, CourseRequestDto request, AppDbContext db, CancellationToken cancellationToken) =>
@@ -172,7 +170,6 @@ app.MapPut("/api/courses/{id:int}", async ([FromRoute] int id, CourseRequestDto 
     return Results.NoContent();
 });
 
-
 // DELETE (DELETE /api/courses/{id}) - Nivå 3
 app.MapDelete("/api/courses/{id:int}", async ([FromRoute] int id, AppDbContext db, CancellationToken cancellationToken) =>
 {
@@ -182,7 +179,6 @@ app.MapDelete("/api/courses/{id:int}", async ([FromRoute] int id, AppDbContext d
     {
         return Results.NotFound($"Course with ID {id} not found.");
     }
-
 
     db.Courses.Remove(course);
     await db.SaveChangesAsync(cancellationToken);

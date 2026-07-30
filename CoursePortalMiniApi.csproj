@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="frontend\src\constants\constants.ts" />
+    <None Remove="frontend\src\constants\CourseLevel.ts" />
+    <None Remove="frontend\src\service\CourseRequestDto.ts" />
+    <None Remove="frontend\src\service\CourseResponseDto.ts" />
+    <None Remove="frontend\src\service\courseService.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,6 +28,14 @@
 
   <ItemGroup>
     <None Include=".github\workflows\ci.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="frontend\src\constants\constants.ts" />
+    <TypeScriptCompile Include="frontend\src\constants\CourseLevel.ts" />
+    <TypeScriptCompile Include="frontend\src\interfaces\CourseRequestDto.ts" />
+    <TypeScriptCompile Include="frontend\src\interfaces\CourseResponseDto.ts" />
+    <TypeScriptCompile Include="frontend\src\service\courseService.ts" />
   </ItemGroup>
 
 </Project>

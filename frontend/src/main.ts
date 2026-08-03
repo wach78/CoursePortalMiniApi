@@ -19,19 +19,44 @@ const getRequiredElement = <T extends HTMLElement>(id: string): T => {
     return element as T;
 };
 
+
+
+const coursesList = getRequiredElement<HTMLUListElement>("coursesList");
+
 const loadCourses = async (
     sortBy?: CourseSortBy,
     direction: SortDirection = "asc"
 ): Promise<void> => {
     const courses = await fetchCourses(sortBy, direction);
 
+    coursesList.replaceChildren();
+
     courses.forEach(course => {
 
+        const courseInfo = document.createElement("li");
+        courseInfo.classList.add('bg-gray-200', 'text-black', 'p-5', 'rounded-full', 'flex', 'flex-col');
+        courseInfo.textContent = course.name;
+
+        const link = document.createElement("a");
+        link.classList.add('text-blue-500', 'underline');
+        link.textContent = '[Läs mer]';
+
+        courseInfo.appendChild(link);
 
 
+        coursesList.appendChild(courseInfo);
     });
 
 };
+
+await loadCourses();
+/*
+
+ <li class="bg-gray-200 text-black p-5 rounded-full flex flex-col">
+            Webbutveckling från grunden
+            <a class="text-blue-500 underline">[Läs mer]</a>
+          </li>
+*/
 
 /*
 

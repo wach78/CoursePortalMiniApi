@@ -35,21 +35,28 @@
 
     </section>
     <section id="courses">
-      <h1 class="text-3xl underline">Kurser</h1>
-      <!--Kurser hamnar här-->
-      <div class="flex gap-8 p-5">
-        <ul id="coursesList">
-          <li class="bg-gray-200 text-black p-5 rounded-full flex flex-col">
-            Webbutveckling från grunden
-            <a class="text-blue-500 underline">[Läs mer]</a>
-          </li>
-        </ul>
-      </div>
+        <h1 class="text-3xl underline">Kurser</h1>
+            <select id="course-sort">
+                <option value="">Default sorting</option>
+                <option value="price:asc">Price: lowest first</option>
+                <option value="price:desc">Price: highest first</option>
+                <option value="level:asc">Level: beginner first</option>
+                <option value="level:desc">Level: advanced first</option>
+            </select>
+        <!--Kurser hamnar här-->
+        <div class="flex gap-8 p-5">
+            <ul id="coursesList">
+                <li class="bg-gray-200 text-black p-5 rounded-full flex flex-col">
+                    Webbutveckling från grunden
+                    <a class="text-blue-500 underline">[Läs mer]</a>
+                </li>
+            </ul>
+        </div>
     </section>
     <section id="course-view">
       <h1 class="text-3xl underline">Kursvy</h1>
       <!--Här syns den aktiva kursen-->
-      <div class="gap-8 p-5 bg-gray-200 rounded-lg text-black flex flex-col gap-1">
+      <div id="course-details" class="gap-8 p-5 bg-gray-200 rounded-lg text-black flex flex-col gap-1">
         <h2>Webbutveckling från grunden</h2>
         En praktiskt kurs för nybörjare
         Start: 12 aug 2026

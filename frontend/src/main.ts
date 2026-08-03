@@ -1,10 +1,10 @@
-import './style.css'
-
 
 import {
     fetchCourses,
     fetchCourse
 } from "./service/courseService";
+
+import type { CourseResponseDto } from "./interfaces/CourseResponseDto";
 
 type CourseSortBy = "price" | "level";
 type SortDirection = "asc" | "desc";
@@ -22,6 +22,9 @@ const getRequiredElement = <T extends HTMLElement>(id: string): T => {
 
 
 const coursesList = getRequiredElement<HTMLUListElement>("coursesList");
+const courseDetails = getRequiredElement<HTMLDivElement>("course-details");
+const courseSortSelect = getRequiredElement<HTMLSelectElement>("course-sort");
+
 
 const loadCourses = async (
     sortBy?: CourseSortBy,
@@ -37,61 +40,69 @@ const loadCourses = async (
         courseInfo.classList.add('bg-gray-200', 'text-black', 'p-5', 'rounded-full', 'flex', 'flex-col');
         courseInfo.textContent = course.name;
 
-        const link = document.createElement("a");
-        link.classList.add('text-blue-500', 'underline');
-        link.textContent = '[Läs mer]';
+        const detailsButton = document.createElement("button");
+        detailsButton.type = "button";
+        detailsButton.classList.add("text-blue-500", "underline");
+        detailsButton.textContent = "Läs mer";
 
-        courseInfo.appendChild(link);
+        detailsButton.addEventListener("click", async () => {
+            const selectedCourse = await fetchCourse(course.id);
 
+            showCourseDetails(selectedCourse);
+        });
 
+        courseInfo.appendChild(detailsButton);
         coursesList.appendChild(courseInfo);
     });
 
 };
 
-await loadCourses('level', 'desc');
-/*
+const showCourseDetails = (course: CourseResponseDto): void => {
+    courseDetails.replaceChildren();
 
- <li class="bg-gray-200 text-black p-5 rounded-full flex flex-col">
-            Webbutveckling från grunden
-            <a class="text-blue-500 underline">[Läs mer]</a>
-          </li>
-*/
+    const heading = document.createElement("h2");
+    heading.textContent = course.name;
 
-/*
+    const description = document.createElement("p");
+    description.textContent = course.description;
 
-const getCourse = async (): Promise<void> => {
+    const applyButton = document.createElement("button");
 
+    applyButton.type = "button";
+    applyButton.textContent = "Anmäl dig nu";
+
+    applyButton.classList.add(
+        "p-3",
+        "bg-gray-950",
+        "text-white",
+        "rounded-lg",
+        "hover:bg-gray-900",
+        "hover:cursor-pointer",
+        "max-w-[20%]"
+    );
+
+    courseDetails.append(
+        heading,
+        description,
+        applyButton
+    );
 };
 
-*/
-/*
+await loadCourses();
 
-<select id="course-sort">
-    <option value="">Default sorting</option>
-    <option value="price:asc">Price: lowest first</option>
-    <option value="price:desc">Price: highest first</option>
-    <option value="level:asc">Level: beginner first</option>
-    <option value="level:desc">Level: advanced first</option>
-</select>
 
-const courseSortSelect =
-    document.querySelector<HTMLSelectElement>("#course-sort");
+courseSortSelect.addEventListener("change", async () => {
+    const selectedValue = courseSortSelect.value;
 
-if (!courseSortSelect) {
-    throw new Error("Course sorting element was not found.");
-}
+    if (selectedValue === "") {
+        await loadCourses();
+        return;
+    }
 
-const selectedSort = courseSortSelect.value;
-
-if (selectedSort === "") {
-    await loadCourses();
-} else {
-    const [sortBy, direction] = selectedSort.split(":");
+    const [sortBy, direction] = selectedValue.split(":");
 
     await loadCourses(
         sortBy as CourseSortBy,
         direction as SortDirection
     );
-}
-*/
+});

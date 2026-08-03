@@ -94,3 +94,8 @@ coverage.cobertura.xml
 *.cmd
 node_modules/
 /dist
+
+# SQLite database files
+.db      
+.db-shm 
+.db-wal 

@@ -139,3 +139,94 @@ dotnet format CoursePortalMiniApi.csproj \
   --verbosity minimal
 ```
 
+## Frontend
+
+The frontend is built with TypeScript and communicates with the Minimal API using the Fetch API.
+
+The frontend source code is located in:
+
+```text
+frontend/
+```
+
+### Requirements
+
+* Node.js
+* npm
+
+Check that Node.js and npm are installed:
+
+```bash
+node --version
+npm --version
+```
+
+### Install Dependencies
+
+Open a terminal in the frontend directory:
+
+```bash
+cd frontend
+```
+
+Install the required npm packages:
+
+```bash
+npm install
+```
+
+This command reads `package.json` and installs the dependencies into the local `node_modules` directory.
+
+### Start the Frontend
+
+Start the Vite development server:
+
+```bash
+npm run dev
+```
+
+The terminal will display the local frontend address, usually:
+
+```text
+http://localhost:5173
+```
+
+Open that address in a web browser.
+
+### API Connection
+
+The frontend communicates with the API at:
+
+```text
+https://localhost:7065/api/courses
+```
+
+The API must be running before course data can be retrieved.
+
+Start the API from the backend project directory:
+
+```bash
+dotnet run --launch-profile https
+```
+
+If HTTPS requests fail, make sure the ASP.NET Core development certificate is trusted:
+
+```bash
+dotnet dev-certs https --check --trust
+```
+
+### Frontend Development Commands
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm install`     | Install project dependencies         |
+| `npm run dev`     | Start the development server         |
+| `npm run build`   | Create a production build            |
+| `npm run preview` | Preview the production build locally |
+
+### Frontend Technologies
+
+* TypeScript
+* Vite
+* HTML
+* CSS

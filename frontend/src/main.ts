@@ -49,7 +49,7 @@ const loadCourses = async (
 
 };
 
-await loadCourses();
+await loadCourses('level', 'desc');
 /*
 
  <li class="bg-gray-200 text-black p-5 rounded-full flex flex-col">
@@ -66,6 +66,15 @@ const getCourse = async (): Promise<void> => {
 
 */
 /*
+
+<select id="course-sort">
+    <option value="">Default sorting</option>
+    <option value="price:asc">Price: lowest first</option>
+    <option value="price:desc">Price: highest first</option>
+    <option value="level:asc">Level: beginner first</option>
+    <option value="level:desc">Level: advanced first</option>
+</select>
+
 const courseSortSelect =
     document.querySelector<HTMLSelectElement>("#course-sort");
 

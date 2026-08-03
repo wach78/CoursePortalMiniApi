@@ -14,7 +14,7 @@ public sealed class CourseResponseDto
 
     public int DurationInWeeks { get; set; }
 
-    public decimal Price { get; set; }
+    public int Price { get; set; }
 
     public CourseLevel Level { get; set; }
 }

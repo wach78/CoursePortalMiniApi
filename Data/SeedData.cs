@@ -23,7 +23,7 @@ public static class SeedData
         Description = "En introduktionskurs i C# med variabler, villkor, loopar, metoder och grundläggande objektorienterad programmering.",
         StartDate = new DateOnly(2026, 9, 1),
         DurationInWeeks = 8,
-        Price = 4_995m,
+        Price = 4995,
         Level = CourseLevel.Beginner
     },
     new Course
@@ -32,7 +32,7 @@ public static class SeedData
         Description = "Lär dig arbeta med klasser, objekt, inkapsling, arv, polymorfism och interface i C#.",
         StartDate = new DateOnly(2026, 9, 15),
         DurationInWeeks = 8,
-        Price = 5_495m,
+        Price = 5495,
         Level = CourseLevel.Beginner
     },
     new Course
@@ -41,7 +41,7 @@ public static class SeedData
         Description = "En praktisk kurs i relationsdatabaser, SQL-frågor, tabeller, relationer, index och normalisering.",
         StartDate = new DateOnly(2026, 10, 1),
         DurationInWeeks = 6,
-        Price = 4_995m,
+        Price = 4995,
         Level = CourseLevel.Beginner
     },
     new Course
@@ -50,7 +50,7 @@ public static class SeedData
         Description = "Lär dig bygga responsiva och tillgängliga webbsidor med semantisk HTML, CSS och modern layout.",
         StartDate = new DateOnly(2026, 10, 12),
         DurationInWeeks = 6,
-        Price = 3_995m,
+        Price = 3995,
         Level = CourseLevel.Beginner
     },
     new Course
@@ -59,7 +59,7 @@ public static class SeedData
         Description = "Utveckla interaktiva webbapplikationer med JavaScript, TypeScript, moduler, DOM-hantering och fetch.",
         StartDate = new DateOnly(2026, 11, 2),
         DurationInWeeks = 8,
-        Price = 5_995m,
+        Price = 5995,
         Level = CourseLevel.Intermediate
     },
     new Course
@@ -68,7 +68,7 @@ public static class SeedData
         Description = "Bygg moderna REST-API:er med ASP.NET Core Minimal API, DTO:er, validering och asynkrona endpoints.",
         StartDate = new DateOnly(2026, 11, 16),
         DurationInWeeks = 8,
-        Price = 6_995m,
+        Price = 6995,
         Level = CourseLevel.Intermediate
     },
     new Course
@@ -77,7 +77,7 @@ public static class SeedData
         Description = "Lär dig använda Entity Framework Core för databasåtkomst, relationer, migrationer och LINQ-frågor.",
         StartDate = new DateOnly(2027, 1, 11),
         DurationInWeeks = 7,
-        Price = 6_495m,
+        Price = 6495,
         Level = CourseLevel.Intermediate
     },
     new Course
@@ -86,7 +86,7 @@ public static class SeedData
         Description = "En kurs i enhetstester, integrationstester, xUnit, Moq och testbar kod i .NET-applikationer.",
         StartDate = new DateOnly(2027, 2, 1),
         DurationInWeeks = 6,
-        Price = 5_995m,
+        Price = 5995,
         Level = CourseLevel.Intermediate
     },
     new Course
@@ -95,7 +95,7 @@ public static class SeedData
         Description = "Lär dig identifiera och förebygga vanliga säkerhetsrisker enligt OWASP, exempelvis XSS, SQL-injektion och bristande åtkomstkontroll.",
         StartDate = new DateOnly(2027, 2, 22),
         DurationInWeeks = 8,
-        Price = 7_995m,
+        Price = 7995,
         Level = CourseLevel.Advanced
     },
     new Course
@@ -104,7 +104,7 @@ public static class SeedData
         Description = "Fördjupa dig i arkitektur, SOLID, prestanda, felhantering, skalbarhet och underhållbara .NET-lösningar.",
         StartDate = new DateOnly(2027, 3, 15),
         DurationInWeeks = 12,
-        Price = 9_995m,
+        Price = 9995,
         Level = CourseLevel.Advanced
     }
 ];

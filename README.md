@@ -230,3 +230,17 @@ dotnet dev-certs https --check --trust
 * Vite
 * HTML
 * CSS
+
+
+### Price Representation
+
+The Price property was initially defined as decimal.
+
+During development, this caused problems with SQLite when sorting courses by price. SQLite does not provide full native support for .NET decimal values, and decimal formatting can also cause confusion between:
+
+* A period in JSON: 1025.50
+* A comma in Swedish display formatting: 1025,50
+
+JSON always requires a period as the decimal separator.
+
+For this exercise, course prices are stored as whole Swedish kronor. The Price property was therefore changed from decimal to int.

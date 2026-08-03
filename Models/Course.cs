@@ -8,7 +8,7 @@ namespace CoursePortalMiniApi.Models
         public string Description { get; set; } = string.Empty;
         public DateOnly StartDate { get; set; }
         public int DurationInWeeks { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         public CourseLevel Level { get; set; }
     }
 }

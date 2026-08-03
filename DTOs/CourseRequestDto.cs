@@ -23,12 +23,9 @@ public sealed class CourseRequestDto
     public int DurationInWeeks { get; set; }
 
     [Range(
-      typeof(decimal),
       CourseValidationConstants.PriceMinValue,
-      CourseValidationConstants.PriceMaxValue,
-      ParseLimitsInInvariantCulture = true,
-      ConvertValueInInvariantCulture = true)]
-    public decimal Price { get; set; }
+      CourseValidationConstants.PriceMaxValue)]
+    public int Price { get; set; }
 
     public CourseLevel Level { get; set; }
 }

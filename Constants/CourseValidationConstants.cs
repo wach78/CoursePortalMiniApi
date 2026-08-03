@@ -8,6 +8,6 @@ public static class CourseValidationConstants
     public const int DurationMinWeeks = 1;
     public const int DurationMaxWeeks = 55;
 
-    public const string PriceMinValue = "0";
-    public const string PriceMaxValue = "99999.99";
+    public const int PriceMinValue = 0;
+    public const int PriceMaxValue = 99999;
 }

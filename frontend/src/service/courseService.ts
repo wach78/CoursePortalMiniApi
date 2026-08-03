@@ -2,11 +2,26 @@ import type { CourseRequestDto } from "../interfaces/CourseRequestDto";
 import type { CourseResponseDto } from "../interfaces/CourseResponseDto";
 import { API_URL, HttpMethod, JSON_HEADERS } from "../constants/constants";
 
-export const fetchCourses = async (): Promise<CourseResponseDto[]> => {
-    const response = await fetch(API_URL);
+type CourseSortBy = "price" | "level";
+type SortDirection = "asc" | "desc";
+
+export const fetchCourses = async (
+    sortBy?: CourseSortBy,
+    direction: SortDirection = "asc"
+): Promise<CourseResponseDto[]> => {
+    const url = new URL(API_URL);
+
+    if (sortBy) {
+        url.searchParams.set("sortBy", sortBy);
+        url.searchParams.set("direction", direction);
+    }
+
+    const response = await fetch(url);
 
     if (!response.ok) {
-        throw new Error(`Fel vid hämtning av kurser: ${response.status}`);
+        throw new Error(
+            `Failed to fetch courses: ${response.status}`
+        );
     }
 
     return await response.json() as CourseResponseDto[];

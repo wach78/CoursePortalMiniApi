@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.ConstrainedExecution;
 using CoursePortalMiniApi.Data;
 using CoursePortalMiniApi.DTOs;
@@ -62,10 +63,44 @@ app.UseCors();
 // Endpoints
 
 // READ ALL (GET /api/courses)
-app.MapGet("/api/courses", async (AppDbContext db, CancellationToken cancellationToken) =>
+app.MapGet("/api/courses", async (
+    AppDbContext db,
+    CancellationToken cancellationToken,
+    string? sortBy,
+    string? direction
+    ) =>
 {
-    var courses = await db.Courses
-        .AsNoTracking()
+    var normalizedSortBy = sortBy?.Trim().ToLowerInvariant();
+    var normalizedDirection = direction?.Trim().ToLowerInvariant();
+
+    if (normalizedSortBy is not null &&
+        normalizedSortBy is not ("price" or "level"))
+    {
+        return Results.BadRequest(
+            "SortBy must be 'price' or 'level'.");
+    }
+
+    if (normalizedDirection is not null &&
+        normalizedDirection is not ("asc" or "desc"))
+    {
+        return Results.BadRequest(
+            "Direction must be 'asc' or 'desc'.");
+    }
+
+    var query = db.Courses.AsNoTracking();
+
+    query = (normalizedSortBy, normalizedDirection) switch
+    {
+        ("price", "desc") => query.OrderByDescending(course => course.Price),
+        ("price", _) => query.OrderBy(course => course.Price),
+
+        ("level", "desc") => query.OrderByDescending(course => course.Level),
+        ("level", _) => query.OrderBy(course => course.Level),
+
+        _ => query.OrderBy(course => course.Id)
+    };
+
+    var courses = await query
         .Select(course => new CourseResponseDto
         {
             Id = course.Id,

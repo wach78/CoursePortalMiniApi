@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <title>Frontend</title>
 </head>
@@ -14,14 +14,15 @@
   <main class="bg-gray-700 text-white min-h-screen">
     <section id="hero">
       <header class="flex justify-between bg-black text-white h-15 items-center p-3 text-xl">
-      <h1>Kursportalen</h1> 
-      <nav class="flex gap-10">
-          <h1>Start</h1><h1>Kurser</h1>
-      </nav>
+        <h1>Kursportalen</h1>
+        <nav class="flex gap-10">
+          <h1>Start</h1>
+          <h1>Kurser</h1>
+        </nav>
       </header>
       <div id="introText" class="min-h-25 p-5">
         <p>Lär dig bygga moderna webbapplikationer <br>
-        Praktiska kurser inom webbutveckling, design och moderna verktyg.</p>
+          Praktiska kurser inom webbutveckling, design och moderna verktyg.</p>
       </div>
       <div class="flex gap-8 p-5">
         <button class="p-3 bg-gray-950 rounded-lg hover:bg-gray-900 hover:cursor-pointer">
@@ -33,8 +34,9 @@
       </div>
 
     </section>
-    <section id="courses"> 
+    <section id="courses">
       <h1>Kurser</h1>
+      <!--Kurser hamnar här-->
       <div class="flex gap-8 p-5">
         <ul>
           <li class="bg-gray-200 text-black p-5 rounded-full flex flex-col">
@@ -43,14 +45,34 @@
           </li>
         </ul>
       </div>
-      <!--Kurser hamnar här-->
     </section>
     <section id="course-view">
       <h1>Kursvy</h1>
       <!--Här syns den aktiva kursen-->
+      <div class="gap-8 p-5 bg-gray-200 rounded-lg text-black flex flex-col gap-1">
+        <h2>Webbutveckling från grunden</h2>
+        En praktiskt kurs för nybörjare
+        Start: 12 aug 2026
+        <button class="p-3 bg-gray-950 text-white rounded-lg hover:bg-gray-900 hover:cursor-pointer max-w-[20%]">
+          Anmäl dig nu
+        </button>
+      </div>
     </section>
     <section id="contact">
       <h1>Kontakt</h1>
+      <div class="flex flex-col max-w-[50%] gap-2">
+        <div class="flex max-w-[20%]">
+          <label>Namn:</label><input type="text" class="bg-white text-black">
+        </div>
+        <div class="flex text-nowrap max-w-[20%]">
+          <label>E-postaddress:</label><input type="email" class="bg-white text-black">
+         </div>
+         <div class="flex text-nowrap ">
+          <label>Meddelande:</label><textarea type="text" class="bg-white text-black"></textarea>
+         </div>
+      </div>
+        
+      
     </section>
   </main>
   <footer id="footer">

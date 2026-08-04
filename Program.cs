@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
     {
         policy
-            .AllowAnyOrigin()
+            .WithOrigins("http://localhost:5173")
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
@@ -54,9 +54,23 @@ if (app.Environment.IsDevelopment())
             "/openapi/v1.json",
             "Course Portal API v1");
     });
+
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+
+app.Use(async (context, next) =>
+{
+    context.Response.OnStarting(() =>
+    {
+        context.Response.Headers.XContentTypeOptions = "nosniff";
+
+        return Task.CompletedTask;
+    });
+
+    await next();
+});
 
 app.UseCors();
 

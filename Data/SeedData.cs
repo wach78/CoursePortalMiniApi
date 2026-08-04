@@ -24,7 +24,8 @@ public static class SeedData
         StartDate = new DateOnly(2026, 9, 1),
         DurationInWeeks = 8,
         Price = 4995,
-        Level = CourseLevel.Beginner
+        Level = CourseLevel.Beginner,
+        CreatedAt = new DateTime(2026, 1, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -33,7 +34,8 @@ public static class SeedData
         StartDate = new DateOnly(2026, 9, 15),
         DurationInWeeks = 8,
         Price = 5495,
-        Level = CourseLevel.Beginner
+        Level = CourseLevel.Beginner,
+        CreatedAt = new DateTime(2026, 2, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -42,7 +44,8 @@ public static class SeedData
         StartDate = new DateOnly(2026, 10, 1),
         DurationInWeeks = 6,
         Price = 4995,
-        Level = CourseLevel.Beginner
+        Level = CourseLevel.Beginner,
+        CreatedAt = new DateTime(2026, 3, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -51,7 +54,8 @@ public static class SeedData
         StartDate = new DateOnly(2026, 10, 12),
         DurationInWeeks = 6,
         Price = 3995,
-        Level = CourseLevel.Beginner
+        Level = CourseLevel.Beginner,
+        CreatedAt = new DateTime(2026, 4, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -60,7 +64,8 @@ public static class SeedData
         StartDate = new DateOnly(2026, 11, 2),
         DurationInWeeks = 8,
         Price = 5995,
-        Level = CourseLevel.Intermediate
+        Level = CourseLevel.Intermediate,
+        CreatedAt = new DateTime(2026, 5, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -69,7 +74,8 @@ public static class SeedData
         StartDate = new DateOnly(2026, 11, 16),
         DurationInWeeks = 8,
         Price = 6995,
-        Level = CourseLevel.Intermediate
+        Level = CourseLevel.Intermediate,
+        CreatedAt = new DateTime(2026, 6, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -78,7 +84,8 @@ public static class SeedData
         StartDate = new DateOnly(2027, 1, 11),
         DurationInWeeks = 7,
         Price = 6495,
-        Level = CourseLevel.Intermediate
+        Level = CourseLevel.Intermediate,
+        CreatedAt = new DateTime(2026, 7, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -87,7 +94,8 @@ public static class SeedData
         StartDate = new DateOnly(2027, 2, 1),
         DurationInWeeks = 6,
         Price = 5995,
-        Level = CourseLevel.Intermediate
+        Level = CourseLevel.Intermediate,
+        CreatedAt = new DateTime(2026, 8, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -96,7 +104,9 @@ public static class SeedData
         StartDate = new DateOnly(2027, 2, 22),
         DurationInWeeks = 8,
         Price = 7995,
-        Level = CourseLevel.Advanced
+        Level = CourseLevel.Advanced,
+        CreatedAt = new DateTime(2026, 9, 15, 10, 0, 0, DateTimeKind.Utc)
+
     },
     new Course
     {
@@ -105,7 +115,8 @@ public static class SeedData
         StartDate = new DateOnly(2027, 3, 15),
         DurationInWeeks = 12,
         Price = 9995,
-        Level = CourseLevel.Advanced
+        Level = CourseLevel.Advanced,
+        CreatedAt = new DateTime(2026, 10, 15, 10, 0, 0, DateTimeKind.Utc)
     }
 ];
 

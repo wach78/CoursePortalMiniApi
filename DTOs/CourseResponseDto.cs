@@ -17,4 +17,5 @@ public sealed class CourseResponseDto
     public int Price { get; set; }
 
     public CourseLevel Level { get; set; }
+    public DateTime CreatedAt { get; set; }
 }

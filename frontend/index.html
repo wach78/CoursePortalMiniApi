@@ -48,7 +48,7 @@
             </section>
             <section class="bg-gray-800 mb-6" id="courses">
                 <h1 class="text-3xl underline text-center">Kurser</h1>
-                <label for="course-sort" class="mr-3">Sortering:</label>
+                <label for="course-sort" class="mr-3 pl-6">Sortering:</label>
                 <select id="course-sort">
                     <option value="name:asc">Namn A-Ö</option>
                     <option value="name:desc">Namn Ö-A</option>
@@ -70,19 +70,30 @@
                     class="gap-8 p-5 m-6 bg-gray-200 rounded-lg text-black flex flex-col"
                 ></div>
             </section>
-            <section class="bg-gray-800 mb-6 text-center" id="contact">
-                <h1 class="text-3xl underline">Kontakt</h1>
-                <div class="flex flex-col max-w-[50%] gap-2">
-                    <div class="flex max-w-[20%]">
-                        <label for="contact-name" class="mr-3">Namn:</label
+            <section
+                class="flex flex-col bg-gray-800 mb-6 items-center p-3"
+                id="contact"
+            >
+                <h1 class="text-3xl underline mb-6">Kontakt</h1>
+                <form
+                    method="post"
+                    class="flex flex-col max-w-full gap-4 text-center border border-white p-3 rounded-lg"
+                >
+                    <div class="grid grid-cols-2">
+                        <label
+                            for="contact-name"
+                            class="mr-3 text-right text-lg"
+                            >Namn:</label
                         ><input
                             type="text"
                             id="contact-name"
                             class="bg-white text-black"
                         />
                     </div>
-                    <div class="flex text-nowrap max-w-[20%]">
-                        <label for="contact-email" class="mr-3"
+                    <div class="grid grid-cols-2">
+                        <label
+                            for="contact-email"
+                            class="mr-3 text-right text-lg"
                             >E-postaddress:</label
                         ><input
                             type="email"
@@ -90,16 +101,26 @@
                             class="bg-white text-black"
                         />
                     </div>
-                    <div class="flex text-nowrap">
-                        <label for="contact-message" class="mr-3"
+                    <div class="grid grid-cols-2">
+                        <label
+                            for="contact-message"
+                            class="mr-3 text-right text-lg"
                             >Meddelande:</label
-                        ><input
-                            type="text"
+                        >
+                        <textarea
+                            name="text"
                             id="contact-message"
                             class="bg-white text-black"
-                        />
+                        ></textarea>
                     </div>
-                </div>
+                    <div class="grid grid-cols-2">
+                        <button
+                            class="col-start-2 p-3 bg-gray-950 rounded-lg hover:bg-gray-900 hover:cursor-pointer"
+                        >
+                            Spara
+                        </button>
+                    </div>
+                </form>
             </section>
         </main>
         <footer id="footer" class="h-10 bg-gray-200">

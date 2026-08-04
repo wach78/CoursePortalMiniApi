@@ -8,4 +8,5 @@ export interface CourseResponseDto {
     durationInWeeks: number;
     price: number;
     level: CourseLevelValue;
+    createdAt: string;
 }

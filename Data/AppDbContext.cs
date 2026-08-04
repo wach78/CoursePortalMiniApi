@@ -40,6 +40,9 @@ public sealed class AppDbContext(
             entity.Property(course => course.Level)
                 .IsRequired();
 
+            entity.Property<DateTime>(course => course.CreatedAt)
+                .IsRequired();
+
             entity.HasIndex(course => new
             {
                 course.Name,

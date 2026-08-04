@@ -10,5 +10,6 @@ namespace CoursePortalMiniApi.Models
         public int DurationInWeeks { get; set; }
         public int Price { get; set; }
         public CourseLevel Level { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

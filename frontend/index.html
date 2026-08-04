@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Kursportalen är en webbapplikation som erbjuder kurser inom webbutveckling, 
+            content="Kursportalen är en webbapplikation som erbjuder kurser inom webbutveckling,
       design och moderna verktyg. Lär dig bygga moderna webbapplikationer med praktiska kurser."
         />
         <link href="/src/style.css" rel="stylesheet" />
@@ -20,9 +20,8 @@
                 >
                     <h1>Kursportalen</h1>
                     <nav class="flex gap-10">
-                        <h1>Start</h1>
-                        <h1>Kurser</h1>
-                        <h1>Kontakt</h1>
+                        <a href="#courses">Kurser</a>
+                        <a href="#contact">Kontakt</a>
                     </nav>
                 </header>
                 <div id="introText" class="min-h-25 p-5">
@@ -33,20 +32,8 @@
                         verktyg.
                     </p>
                 </div>
-                <div class="flex gap-8 p-5">
-                    <button
-                        class="p-3 bg-gray-950 rounded-lg hover:bg-gray-900 hover:cursor-pointer"
-                    >
-                        Se kurser
-                    </button>
-                    <button
-                        class="p-3 bg-gray-950 rounded-lg hover:bg-gray-900 hover:cursor-pointer"
-                    >
-                        Kontakta oss
-                    </button>
-                </div>
             </section>
-            <section class="bg-gray-800 mb-6" id="courses">
+            <section class="bg-gray-800 mb-6 p-2" id="courses">
                 <h1 class="text-3xl underline text-center">Kurser</h1>
                 <label for="course-sort" class="mr-3 pl-6">Sortering:</label>
                 <select id="course-sort">
@@ -76,6 +63,7 @@
             >
                 <h1 class="text-3xl underline mb-6">Kontakt</h1>
                 <form
+                    id="contact-form"
                     method="post"
                     class="flex flex-col max-w-full gap-4 text-center border border-white p-3 rounded-lg"
                 >
@@ -85,9 +73,11 @@
                             class="mr-3 text-right text-lg"
                             >Namn:</label
                         ><input
+                            name="name"
                             type="text"
                             id="contact-name"
-                            class="bg-white text-black"
+                            class="bg-white text-black p-1"
+                            required
                         />
                     </div>
                     <div class="grid grid-cols-2">
@@ -96,9 +86,11 @@
                             class="mr-3 text-right text-lg"
                             >E-postaddress:</label
                         ><input
+                            name="email"
                             type="email"
                             id="contact-email"
-                            class="bg-white text-black"
+                            class="bg-white text-black p-1"
+                            required
                         />
                     </div>
                     <div class="grid grid-cols-2">
@@ -110,11 +102,13 @@
                         <textarea
                             name="text"
                             id="contact-message"
-                            class="bg-white text-black"
+                            class="bg-white text-black p-1"
+                            required
                         ></textarea>
                     </div>
                     <div class="grid grid-cols-2">
                         <button
+                            type="submit"
                             class="col-start-2 p-3 bg-gray-950 rounded-lg hover:bg-gray-900 hover:cursor-pointer"
                         >
                             Spara
@@ -123,8 +117,8 @@
                 </form>
             </section>
         </main>
-        <footer id="footer" class="h-10 bg-gray-200">
-            <h1>Kursportalen @ 2026</h1>
+        <footer id="footer" class="h-10 p-2 text-center bg-gray-200 text-black">
+            <p>Kursportalen @ 2026</p>
         </footer>
         <script type="module" src="/src/main.ts"></script>
     </body>

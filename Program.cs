@@ -88,7 +88,7 @@ app.MapGet("/api/courses", async (
     var normalizedDirection = direction?.Trim().ToLowerInvariant();
 
     if (normalizedSortBy is not null &&
-        normalizedSortBy is not ("price" or "level" or "name"))
+        normalizedSortBy is not ("price" or "level" or "name" or "date"))
     {
         return Results.BadRequest(
             "SortBy must be 'price' or 'level' or name.");
@@ -113,6 +113,9 @@ app.MapGet("/api/courses", async (
 
         ("name", "desc") => query.OrderByDescending(course => course.Name),
         ("name", _) => query.OrderBy(course => course.Name),
+
+        ("date", "desc") => query.OrderByDescending(course => course.CreatedAt),
+        ("date", _) => query.OrderBy(course => course.CreatedAt),
 
         _ => query.OrderBy(course => course.Id)
     };

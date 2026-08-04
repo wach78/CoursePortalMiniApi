@@ -129,7 +129,8 @@ app.MapGet("/api/courses", async (
             StartDate = course.StartDate,
             DurationInWeeks = course.DurationInWeeks,
             Price = course.Price,
-            Level = course.Level
+            Level = course.Level,
+            CreatedAt = course.CreatedAt
         })
         .ToListAsync(cancellationToken);
 
@@ -150,7 +151,8 @@ app.MapGet("/api/courses/{id:int}", async ([FromRoute] int id, AppDbContext db, 
            StartDate = course.StartDate,
            DurationInWeeks = course.DurationInWeeks,
            Price = course.Price,
-           Level = course.Level
+           Level = course.Level,
+           CreatedAt = course.CreatedAt
        })
        .FirstOrDefaultAsync(cancellationToken);
 

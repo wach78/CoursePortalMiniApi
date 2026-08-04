@@ -105,7 +105,14 @@ const loadCourses = async (
             "z-50",
         );
 
-        if (course.name == "Entity Framework Core") {
+        const creationDate = new Date(course.createdAt);
+        const today = new Date();
+
+        const monthInMilli = 30 * 24 * 60 * 60 * 1000;
+        const age = today.getTime() - creationDate.getTime();
+
+        if (age <= monthInMilli) {
+            console.log(course.createdAt);
             courseInfo.append(courseName, newBadge, infoDiv, detailsButton);
         } else {
             courseInfo.append(courseName, infoDiv, detailsButton);

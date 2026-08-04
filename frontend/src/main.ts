@@ -28,17 +28,45 @@ const loadCourses = async (
 
     coursesList.replaceChildren();
 
+    coursesList.classList.add(
+        "flex",
+        "flex-wrap",
+        "gap-5",
+        "p-2",
+        "bg-gray-800",
+    );
+
     courses.forEach((course) => {
         const courseInfo = document.createElement("li");
         courseInfo.classList.add(
             "bg-gray-200",
             "text-black",
             "p-5",
-            "rounded-full",
+            "w-90",
+            "rounded-lg",
             "flex",
+            "text-center",
+            "justify-center",
             "flex-col",
+            "align-items",
         );
-        courseInfo.textContent = course.name;
+
+        const courseName = document.createElement("h2");
+        courseName.textContent = course.name;
+        courseName.classList.add("text-xl", "font-bold", "mb-2");
+
+        const infoDiv = document.createElement("div");
+        infoDiv.classList.add("flex", "gap-5", "mx-auto");
+
+        const spanLevel = document.createElement("span");
+        const spanPrice = document.createElement("span");
+
+        spanLevel.textContent = `Nivå: ${CourseLevelLabels[course.level]}`;
+        spanPrice.textContent = `Pris: ${String(course.price)} kr`;
+
+        spanLevel.classList.add("text-sm");
+        spanPrice.classList.add("text-sm");
+        infoDiv.append(spanLevel, spanPrice);
 
         const detailsButton = document.createElement("button");
         detailsButton.type = "button";
@@ -51,13 +79,15 @@ const loadCourses = async (
             showCourseDetails(selectedCourse);
         });
 
-        courseInfo.appendChild(detailsButton);
+        courseInfo.append(courseName, infoDiv, detailsButton);
         coursesList.appendChild(courseInfo);
     });
 };
 
 const showCourseDetails = (course: CourseResponseDto): void => {
     courseDetails.replaceChildren();
+
+    courseDetails.classList.add("m-2");
 
     const heading = document.createElement("h2");
     heading.textContent = course.name;

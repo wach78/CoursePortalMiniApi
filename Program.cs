@@ -74,10 +74,10 @@ app.MapGet("/api/courses", async (
     var normalizedDirection = direction?.Trim().ToLowerInvariant();
 
     if (normalizedSortBy is not null &&
-        normalizedSortBy is not ("price" or "level"))
+        normalizedSortBy is not ("price" or "level" or "name"))
     {
         return Results.BadRequest(
-            "SortBy must be 'price' or 'level'.");
+            "SortBy must be 'price' or 'level' or name.");
     }
 
     if (normalizedDirection is not null &&
@@ -96,6 +96,9 @@ app.MapGet("/api/courses", async (
 
         ("level", "desc") => query.OrderByDescending(course => course.Level),
         ("level", _) => query.OrderBy(course => course.Level),
+
+        ("name", "desc") => query.OrderByDescending(course => course.Name),
+        ("name", _) => query.OrderBy(course => course.Name),
 
         _ => query.OrderBy(course => course.Id)
     };

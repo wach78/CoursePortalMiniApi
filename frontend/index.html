@@ -37,13 +37,14 @@
     </section>
     <section id="courses">
         <h1 class="text-3xl underline">Kurser</h1>
-            <select id="course-sort">
-                <option value="">Namn</option>
-                <option value="price:asc">Pris: Lägst först</option>
-                <option value="price:desc">Price: Högst först</option>
-                <option value="level:asc">Nivå: Enklast först</option>
-                <option value="level:desc">Nivå: Avancerat först</option>
-            </select>
+        <select id="course-sort">
+            <option value="name:asc">Namn A-Ö</option>
+            <option value="name:desc">Namn Ö-A</option>
+            <option value="price:asc">Pris: Lägst först</option>
+            <option value="price:desc">Price: Högst först</option>
+            <option value="level:asc">Nivå: Enklast först</option>
+            <option value="level:desc">Nivå: Avancerat först</option>
+        </select>
         <!--Kurser hamnar här-->
         <div class="flex gap-8 p-5">
             <ul id="coursesList">

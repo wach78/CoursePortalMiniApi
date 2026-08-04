@@ -2,7 +2,7 @@ import type { CourseRequestDto } from "../interfaces/CourseRequestDto";
 import type { CourseResponseDto } from "../interfaces/CourseResponseDto";
 import { API_URL, HttpMethod, JSON_HEADERS } from "../constants/constants";
 
-type CourseSortBy = "price" | "level" | "name";
+type CourseSortBy = "price" | "level" | "name" | "date";
 type SortDirection = "asc" | "desc";
 
 export const fetchCourses = async (

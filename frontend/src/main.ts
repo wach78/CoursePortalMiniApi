@@ -19,6 +19,14 @@ const getRequiredElement = <T extends HTMLElement>(id: string): T => {
 const coursesList = getRequiredElement<HTMLUListElement>("coursesList");
 const courseDetails = getRequiredElement<HTMLDivElement>("course-details");
 const courseSortSelect = getRequiredElement<HTMLSelectElement>("course-sort");
+const contactForm = getRequiredElement<HTMLFormElement>("contact-form");
+
+contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+    console.log(formData.get("name"));
+    console.log("Formulär skickat!");
+});
 
 const loadCourses = async (
     sortBy?: CourseSortBy,
@@ -49,6 +57,7 @@ const loadCourses = async (
             "justify-center",
             "flex-col",
             "align-items",
+            "relative",
         );
 
         const courseName = document.createElement("h2");
@@ -70,7 +79,11 @@ const loadCourses = async (
 
         const detailsButton = document.createElement("button");
         detailsButton.type = "button";
-        detailsButton.classList.add("text-blue-700", "underline");
+        detailsButton.classList.add(
+            "text-blue-700",
+            "underline",
+            "hover:cursor-pointer",
+        );
         detailsButton.textContent = "Läs mer";
 
         detailsButton.addEventListener("click", async () => {
@@ -79,9 +92,29 @@ const loadCourses = async (
             showCourseDetails(selectedCourse);
         });
 
-        courseInfo.append(courseName, infoDiv, detailsButton);
+        const newBadge = document.createElement("span");
+        newBadge.textContent = "NYHET!";
+        newBadge.classList.add(
+            "bg-orange-500",
+            "rotate-25",
+            "absolute",
+            "rounded-full",
+            "w-1/4",
+            "top-1",
+            "-right-3",
+            "z-50",
+        );
+
+        if (course.name == "Entity Framework Core") {
+            courseInfo.append(courseName, newBadge, infoDiv, detailsButton);
+        } else {
+            courseInfo.append(courseName, infoDiv, detailsButton);
+        }
+
         coursesList.appendChild(courseInfo);
     });
+
+    showCourseDetails(courses[0]);
 };
 
 const showCourseDetails = (course: CourseResponseDto): void => {
@@ -112,7 +145,7 @@ const showCourseDetails = (course: CourseResponseDto): void => {
     spanPrice.classList.add("font-bold");
 
     const infoDiv = document.createElement("div");
-    infoDiv.classList.add("flex", "gap-5");
+    infoDiv.classList.add("flex", "gap-5", "justify-center");
 
     infoDiv.append(spanStart, spanLength, spanLevel, spanPrice);
 
@@ -125,11 +158,13 @@ const showCourseDetails = (course: CourseResponseDto): void => {
     });
     applyButton.classList.add(
         "p-3",
+        "mx-auto",
         "bg-gray-950",
         "text-white",
         "rounded-lg",
         "hover:bg-gray-900",
         "hover:cursor-pointer",
+        "w-1/5",
         "max-w-[20%]",
     );
 

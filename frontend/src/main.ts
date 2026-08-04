@@ -99,10 +99,30 @@ courseSortSelect.addEventListener("change", async () => {
         return;
     }
 
-    const [sortBy, direction] = selectedValue.split(":");
+    const parts = selectedValue.split(":");
 
-    await loadCourses(
-        sortBy as CourseSortBy,
-        direction as SortDirection
-    );
+    if (parts.length !== 2) {
+        console.error("Invalid sorting format:", selectedValue);
+        await loadCourses();
+        return;
+    }
+
+    const [sortBy, direction] = parts;
+
+    if (!isCourseSortBy(sortBy) || !isSortDirection(direction)) {
+        console.error("Invalid sorting value:", selectedValue);
+        await loadCourses();
+        return;
+    }
+
+    await loadCourses(sortBy, direction);
 });
+
+
+function isCourseSortBy(value: string): value is CourseSortBy {
+    return value === "price" || value === "level";
+}
+
+function isSortDirection(value: string): value is SortDirection {
+    return value === "asc" || value === "desc";
+}

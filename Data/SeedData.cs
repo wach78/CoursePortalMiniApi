@@ -95,7 +95,7 @@ public static class SeedData
         DurationInWeeks = 6,
         Price = 5995,
         Level = CourseLevel.Intermediate,
-        CreatedAt = new DateTime(2026, 8, 15, 10, 0, 0, DateTimeKind.Utc)
+        CreatedAt = new DateTime(2026, 3, 15, 10, 0, 0, DateTimeKind.Utc)
     },
     new Course
     {
@@ -105,7 +105,7 @@ public static class SeedData
         DurationInWeeks = 8,
         Price = 7995,
         Level = CourseLevel.Advanced,
-        CreatedAt = new DateTime(2026, 9, 15, 10, 0, 0, DateTimeKind.Utc)
+        CreatedAt = new DateTime(2026, 4, 15, 10, 0, 0, DateTimeKind.Utc)
 
     },
     new Course
@@ -116,7 +116,7 @@ public static class SeedData
         DurationInWeeks = 12,
         Price = 9995,
         Level = CourseLevel.Advanced,
-        CreatedAt = new DateTime(2026, 10, 15, 10, 0, 0, DateTimeKind.Utc)
+        CreatedAt = new DateTime(2026, 5, 15, 10, 0, 0, DateTimeKind.Utc)
     }
 ];
 

@@ -3,7 +3,7 @@ import { fetchCourses, fetchCourse } from "./service/courseService";
 import type { CourseResponseDto } from "./interfaces/CourseResponseDto";
 import { CourseLevelLabels } from "./constants/CourseLevel";
 
-type CourseSortBy = "price" | "level";
+type CourseSortBy = "price" | "level" | "name";
 type SortDirection = "asc" | "desc";
 
 const getRequiredElement = <T extends HTMLElement>(id: string): T => {
@@ -136,7 +136,7 @@ const showCourseDetails = (course: CourseResponseDto): void => {
     courseDetails.append(heading, description, infoDiv, applyButton);
 };
 
-await loadCourses();
+await loadCourses("name","asc");
 
 courseSortSelect.addEventListener("change", async () => {
     const selectedValue = courseSortSelect.value;
@@ -166,7 +166,7 @@ courseSortSelect.addEventListener("change", async () => {
 });
 
 function isCourseSortBy(value: string): value is CourseSortBy {
-    return value === "price" || value === "level";
+    return value === "price" || value === "level" || value === "name";
 }
 
 function isSortDirection(value: string): value is SortDirection {

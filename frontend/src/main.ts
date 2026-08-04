@@ -70,7 +70,7 @@ const loadCourses = async (
 
         const detailsButton = document.createElement("button");
         detailsButton.type = "button";
-        detailsButton.classList.add("text-blue-500", "underline");
+        detailsButton.classList.add("text-blue-700", "underline");
         detailsButton.textContent = "Läs mer";
 
         detailsButton.addEventListener("click", async () => {
@@ -136,7 +136,7 @@ const showCourseDetails = (course: CourseResponseDto): void => {
     courseDetails.append(heading, description, infoDiv, applyButton);
 };
 
-await loadCourses("name","asc");
+await loadCourses("name", "asc");
 
 courseSortSelect.addEventListener("change", async () => {
     const selectedValue = courseSortSelect.value;

@@ -4,7 +4,11 @@
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+        <meta
+            name="description"
+            content="Kursportalen är en webbapplikation som erbjuder kurser inom webbutveckling, 
+      design och moderna verktyg. Lär dig bygga moderna webbapplikationer med praktiska kurser."
+        />
         <link href="/src/style.css" rel="stylesheet" />
         <title>Kursportalen</title>
     </head>
@@ -44,24 +48,18 @@
             </section>
             <section class="bg-gray-800 mb-6" id="courses">
                 <h1 class="text-3xl underline text-center">Kurser</h1>
+                <label for="course-sort" class="mr-3">Sortering:</label>
                 <select id="course-sort">
-            <option value="name:asc">Namn A-Ö</option>
-            <option value="name:desc">Namn Ö-A</option>
-            <option value="price:asc">Pris: Lägst först</option>
-            <option value="price:desc">Price: Högst först</option>
-            <option value="level:asc">Nivå: Enklast först</option>
-            <option value="level:desc">Nivå: Avancerat först</option>
-        </select>
+                    <option value="name:asc">Namn A-Ö</option>
+                    <option value="name:desc">Namn Ö-A</option>
+                    <option value="price:asc">Pris: Lägst först</option>
+                    <option value="price:desc">Price: Högst först</option>
+                    <option value="level:asc">Nivå: Enklast först</option>
+                    <option value="level:desc">Nivå: Avancerat först</option>
+                </select>
                 <!--Kurser hamnar här-->
                 <div class="flex gap-8 p-5">
-                    <ul id="coursesList">
-                        <li
-                            class="bg-gray-200 text-black p-5 rounded-full flex flex-col"
-                        >
-                            Webbutveckling från grunden
-                            <a class="text-blue-500 underline">[Läs mer]</a>
-                        </li>
-                    </ul>
+                    <ul id="coursesList"></ul>
                 </div>
             </section>
             <section class="bg-gray-800 mb-6 p-3 text-center" id="course-view">
@@ -76,16 +74,30 @@
                 <h1 class="text-3xl underline">Kontakt</h1>
                 <div class="flex flex-col max-w-[50%] gap-2">
                     <div class="flex max-w-[20%]">
-                        <label class="mr-3">Namn:</label
-                        ><input type="text" class="bg-white text-black" />
+                        <label for="contact-name" class="mr-3">Namn:</label
+                        ><input
+                            type="text"
+                            id="contact-name"
+                            class="bg-white text-black"
+                        />
                     </div>
                     <div class="flex text-nowrap max-w-[20%]">
-                        <label class="mr-3">E-postaddress:</label
-                        ><input type="email" class="bg-white text-black" />
+                        <label for="contact-email" class="mr-3"
+                            >E-postaddress:</label
+                        ><input
+                            type="email"
+                            id="contact-email"
+                            class="bg-white text-black"
+                        />
                     </div>
                     <div class="flex text-nowrap">
-                        <label class="mr-3">Meddelande:</label
-                        ><input type="text" class="bg-white text-black" />
+                        <label for="contact-message" class="mr-3"
+                            >Meddelande:</label
+                        ><input
+                            type="text"
+                            id="contact-message"
+                            class="bg-white text-black"
+                        />
                     </div>
                 </div>
             </section>
@@ -95,6 +107,4 @@
         </footer>
         <script type="module" src="/src/main.ts"></script>
     </body>
-
-
 </html>

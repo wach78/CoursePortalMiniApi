@@ -20,6 +20,8 @@ const coursesList = getRequiredElement<HTMLUListElement>("coursesList");
 const courseDetails = getRequiredElement<HTMLDivElement>("course-details");
 const courseSortSelect = getRequiredElement<HTMLSelectElement>("course-sort");
 const contactForm = getRequiredElement<HTMLFormElement>("contact-form");
+const modal = getRequiredElement<HTMLDialogElement>("modal");
+const modalClose = getRequiredElement<HTMLButtonElement>("closeModal");
 
 contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -164,7 +166,31 @@ const showCourseDetails = (course: CourseResponseDto): void => {
     applyButton.type = "button";
     applyButton.textContent = "Anmäl dig nu";
     applyButton.addEventListener("click", () => {
-        alert("Du är anmäld till kurs: " + course.name);
+        modal.showModal();
+        modal.classList.add(
+            "bg-gray-800",
+            "rounded-lg",
+            "flex",
+            "flex-col",
+            "justify-between",
+            "text-white",
+            "text-center",
+            "top-1/2",
+            "left-1/2",
+            "-translate-y-1/2",
+            "-translate-x-1/2",
+            "w-100",
+            "h-50",
+            "p-5",
+            "shadow-lg",
+        );
+        const modalHeading =
+            getRequiredElement<HTMLParagraphElement>("modalHeading");
+        const modalTextBody =
+            getRequiredElement<HTMLParagraphElement>("modalTextBody");
+        modalHeading.textContent = course.name;
+        modalTextBody.textContent = "Nu är du anmäld till kursen!";
+        // alert("Du är anmäld till kurs: " + course.name);
     });
     applyButton.classList.add(
         "p-3",
@@ -210,6 +236,26 @@ courseSortSelect.addEventListener("change", async () => {
     await loadCourses(sortBy, direction);
 });
 
+modalClose.addEventListener("click", () => {
+    modal.close();
+    modal.classList.remove(
+        "bg-gray-800",
+        "rounded-lg",
+        "flex",
+        "flex-col",
+        "justify-between",
+        "text-white",
+        "text-center",
+        "top-1/2",
+        "left-1/2",
+        "-translate-y-1/2",
+        "-translate-x-1/2",
+        "w-100",
+        "h-50",
+        "p-5",
+        "shadow-lg",
+    );
+});
 const btn = getRequiredElement<HTMLButtonElement>("easterEgg");
 btn.addEventListener("click", () => {
     const sections = document.querySelectorAll("section");

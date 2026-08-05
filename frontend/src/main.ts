@@ -83,12 +83,15 @@ const loadCourses = async (
             "text-blue-700",
             "underline",
             "hover:cursor-pointer",
+            "text-xl",
         );
         detailsButton.textContent = "Läs mer";
 
         detailsButton.addEventListener("click", async () => {
             const selectedCourse = await fetchCourse(course.id);
-
+            document
+                .getElementById("course-view")
+                ?.scrollIntoView({ behavior: "smooth" });
             showCourseDetails(selectedCourse);
         });
 
@@ -171,8 +174,8 @@ const showCourseDetails = (course: CourseResponseDto): void => {
         "rounded-lg",
         "hover:bg-gray-900",
         "hover:cursor-pointer",
-        "w-1/5",
-        "max-w-[20%]",
+        "lg:w-1/5",
+        "w-1/2",
     );
 
     courseDetails.append(heading, description, infoDiv, applyButton);
@@ -208,7 +211,12 @@ courseSortSelect.addEventListener("change", async () => {
 });
 
 function isCourseSortBy(value: string): value is CourseSortBy {
-    return value === "price" || value === "level" || value === "name" || value === "date";
+    return (
+        value === "price" ||
+        value === "level" ||
+        value === "name" ||
+        value === "date"
+    );
 }
 
 function isSortDirection(value: string): value is SortDirection {

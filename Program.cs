@@ -7,7 +7,7 @@ using CoursePortalMiniApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-var connectionString = builder.Configuration
+string connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException(
         "Connection string 'DefaultConnection' is missing.");
@@ -33,11 +33,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddValidation();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
-await using (var scope = app.Services.CreateAsyncScope())
+await using (AsyncServiceScope scope = app.Services.CreateAsyncScope())
 {
-    var dbContext = scope.ServiceProvider
+    AppDbContext dbContext = scope.ServiceProvider
         .GetRequiredService<AppDbContext>();
 
     await dbContext.Database.MigrateAsync();
@@ -84,8 +84,8 @@ app.MapGet("/api/courses", async (
     string? direction
     ) =>
 {
-    var normalizedSortBy = sortBy?.Trim().ToLowerInvariant();
-    var normalizedDirection = direction?.Trim().ToLowerInvariant();
+    string? normalizedSortBy = sortBy?.Trim().ToLowerInvariant();
+    string? normalizedDirection = direction?.Trim().ToLowerInvariant();
 
     if (normalizedSortBy is not null &&
         normalizedSortBy is not ("price" or "level" or "name"))
@@ -101,7 +101,7 @@ app.MapGet("/api/courses", async (
             "Direction must be 'asc' or 'desc'.");
     }
 
-    var query = db.Courses.AsNoTracking();
+    IQueryable<Course> query = db.Courses.AsNoTracking();
 
     query = (normalizedSortBy, normalizedDirection) switch
     {
@@ -117,7 +117,7 @@ app.MapGet("/api/courses", async (
         _ => query.OrderBy(course => course.Id)
     };
 
-    var courses = await query
+    List<CourseResponseDto> courses = await query
         .Select(course => new CourseResponseDto
         {
             Id = course.Id,
@@ -136,7 +136,7 @@ app.MapGet("/api/courses", async (
 // READ ONE (GET /api/courses/{id})
 app.MapGet("/api/courses/{id:int}", async ([FromRoute] int id, AppDbContext db, CancellationToken cancellationToken) =>
 {
-    var course = await db.Courses
+    CourseResponseDto? course = await db.Courses
        .AsNoTracking()
        .Where(course => course.Id == id)
        .Select(course => new CourseResponseDto
@@ -157,9 +157,9 @@ app.MapGet("/api/courses/{id:int}", async ([FromRoute] int id, AppDbContext db, 
 // CREATE (POST /api/courses)
 app.MapPost("/api/courses", async (CourseRequestDto request, AppDbContext db, CancellationToken cancellationToken) =>
 {
-    var courseName = request.Name.Trim();
+    string courseName = request.Name.Trim();
 
-    var courseExists = await db.Courses.AnyAsync(
+    bool courseExists = await db.Courses.AnyAsync(
         course =>
             course.Name == courseName &&
             course.StartDate == request.StartDate,
@@ -173,7 +173,7 @@ app.MapPost("/api/courses", async (CourseRequestDto request, AppDbContext db, Ca
         });
     }
 
-    var course = new Course
+    Course course = new()
     {
         Name = courseName,
         Description = request.Description.Trim(),
@@ -186,7 +186,7 @@ app.MapPost("/api/courses", async (CourseRequestDto request, AppDbContext db, Ca
     db.Courses.Add(course);
     await db.SaveChangesAsync(cancellationToken);
 
-    var response = new CourseResponseDto
+    CourseResponseDto response = new()
     {
         Id = course.Id,
         Name = course.Name,
@@ -203,7 +203,7 @@ app.MapPost("/api/courses", async (CourseRequestDto request, AppDbContext db, Ca
 // UPDATE (PUT /api/courses/{id})
 app.MapPut("/api/courses/{id:int}", async ([FromRoute] int id, CourseRequestDto request, AppDbContext db, CancellationToken cancellationToken) =>
 {
-    var course = await db.Courses.FindAsync([id], cancellationToken);
+    Course? course = await db.Courses.FindAsync([id], cancellationToken);
 
     if (course is null)
     {
@@ -225,7 +225,7 @@ app.MapPut("/api/courses/{id:int}", async ([FromRoute] int id, CourseRequestDto 
 // DELETE (DELETE /api/courses/{id}) - Nivå 3
 app.MapDelete("/api/courses/{id:int}", async ([FromRoute] int id, AppDbContext db, CancellationToken cancellationToken) =>
 {
-    var course = await db.Courses.FindAsync([id], cancellationToken);
+    Course? course = await db.Courses.FindAsync([id], cancellationToken);
 
     if (course is null)
     {

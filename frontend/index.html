@@ -35,17 +35,21 @@
             </section>
             <section class="bg-gray-800 mb-6 p-2" id="courses">
                 <h1 class="text-3xl underline text-center">Kurser</h1>
-                <label for="course-sort" class="mr-3 pl-6">Sortering:</label>
-                <select id="course-sort">
-                    <option value="date:desc">Nyast</option>
-                    <option value="date:asc">Äldst</option>
-                    <option value="name:asc">Namn A-Ö</option>
-                    <option value="name:desc">Namn Ö-A</option>
-                    <option value="price:asc">Pris: Lägst först</option>
-                    <option value="price:desc">Price: Högst först</option>
-                    <option value="level:asc">Nivå: Enklast först</option>
-                    <option value="level:desc">Nivå: Avancerat först</option>
-                </select>
+                <div class="border border-white p-1 ml-6 max-w-68">
+                    <label for="course-sort" class="p-1">Sortering:</label>
+                    <select class="p-1" id="course-sort">
+                        <option value="date:desc">Nyast</option>
+                        <option value="date:asc">Äldst</option>
+                        <option value="name:asc">Namn A-Ö</option>
+                        <option value="name:desc">Namn Ö-A</option>
+                        <option value="price:asc">Pris: Lägst först</option>
+                        <option value="price:desc">Price: Högst först</option>
+                        <option value="level:asc">Nivå: Enklast först</option>
+                        <option value="level:desc">
+                            Nivå: Avancerat först
+                        </option>
+                    </select>
+                </div>
                 <!--Kurser hamnar här-->
                 <div class="flex gap-8 p-5">
                     <ul id="coursesList"></ul>

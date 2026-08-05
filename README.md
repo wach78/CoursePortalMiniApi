@@ -203,7 +203,7 @@ https://localhost:7065/api/courses
 
 The API must be running before course data can be retrieved.
 
-Start the API from the backend project directory:
+Start the API from the root project directory:
 
 ```bash
 dotnet run --launch-profile https
@@ -229,8 +229,11 @@ dotnet dev-certs https --check --trust
 * TypeScript
 * Vite
 * HTML
-* CSS
+* TailwindCSS
 
+
+### Figma 
+https://www.figma.com/board/PPzVIzWsgM3Fi56a7WW1iq/Untitled?node-id=0-1&p=f 
 
 ### Price Representation
 

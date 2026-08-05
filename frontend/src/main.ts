@@ -210,6 +210,15 @@ courseSortSelect.addEventListener("change", async () => {
     await loadCourses(sortBy, direction);
 });
 
+const btn = getRequiredElement<HTMLButtonElement>("easterEgg");
+btn.addEventListener("click", () => {
+    const sections = document.querySelectorAll("section");
+
+    sections.forEach((section) => {
+        section.classList.add("animate-spin");
+    });
+});
+
 function isCourseSortBy(value: string): value is CourseSortBy {
     return (
         value === "price" ||

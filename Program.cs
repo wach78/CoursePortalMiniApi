@@ -1,8 +1,5 @@
-using System.Globalization;
-using System.Runtime.ConstrainedExecution;
 using CoursePortalMiniApi.Data;
 using CoursePortalMiniApi.DTOs;
-using CoursePortalMiniApi.Migrations;
 using CoursePortalMiniApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

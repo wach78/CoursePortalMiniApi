@@ -226,7 +226,7 @@ app.MapPut("/api/courses/{id:int}", async ([FromRoute] int id, CourseRequestDto 
     return Results.NoContent();
 });
 
-// DELETE (DELETE /api/courses/{id}) - Nivå 3
+// DELETE (DELETE /api/courses/{id})
 app.MapDelete("/api/courses/{id:int}", async ([FromRoute] int id, AppDbContext db, CancellationToken cancellationToken) =>
 {
     Course? course = await db.Courses.FindAsync([id], cancellationToken);

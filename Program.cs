@@ -182,7 +182,8 @@ app.MapPost("/api/courses", async (CourseRequestDto request, AppDbContext db, Ca
         StartDate = request.StartDate,
         DurationInWeeks = request.DurationInWeeks,
         Price = request.Price,
-        Level = request.Level
+        Level = request.Level,
+        CreatedAt = DateTime.UtcNow
     };
 
     db.Courses.Add(course);
@@ -196,7 +197,8 @@ app.MapPost("/api/courses", async (CourseRequestDto request, AppDbContext db, Ca
         StartDate = course.StartDate,
         DurationInWeeks = course.DurationInWeeks,
         Price = course.Price,
-        Level = course.Level
+        Level = course.Level,
+        CreatedAt = course.CreatedAt
     };
 
     return Results.Created($"/api/courses/{course.Id}", response);

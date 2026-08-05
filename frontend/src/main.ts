@@ -178,7 +178,7 @@ const showCourseDetails = (course: CourseResponseDto): void => {
     courseDetails.append(heading, description, infoDiv, applyButton);
 };
 
-await loadCourses("name", "asc");
+await loadCourses("date", "desc");
 
 courseSortSelect.addEventListener("change", async () => {
     const selectedValue = courseSortSelect.value;
